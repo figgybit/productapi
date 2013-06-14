@@ -63,4 +63,14 @@ class Attributes(models.Model):
                 attribute.value = attrs[key]
                 attribute.save()
 
+
+    @classmethod
+    def delete_attrs(cls, product, attrs):
+       for key in attrs:
+            if key not in ['action', 'vendor_style_number', 'vendor_color', 'vendor_size']:
+                attribute = cls.objects.filter(key=key, product=product)
+                if attribute:
+                    attribute.delete()
+
+
 # Create your models here.
