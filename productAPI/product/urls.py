@@ -7,7 +7,6 @@ auth = HttpBasicAuthentication(realm='My sample API')
 products = Resource(handler=ProductHandler, authentication=auth)
 
 urlpatterns = patterns('',
-    # (r'^$', 'index'),
     url(r'^all/$', products),
     url(r'^(?P<id>[^/]+)/$', products),
     url(r'^$', products),

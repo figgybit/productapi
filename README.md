@@ -24,10 +24,11 @@ Update or Add new Attributes
 http://manta.colorsproject.com/api/products/3/?action=update&retail_price_GBP=350
 
 Delete Attribute
-NOT COMPLETED
+http://manta.colorsproject.com/api/products/3/?action=delete_attrs&retail_price_GBP&retail_price_USD
 
 Search
-NOT COMPLETED
+The search query will search all basic attributes of a product.  (vendor_style_number, vendor_color, vendor_size).  You are not able to search attributes.
+http://manta.colorsproject.com/api/products/3/?action=search&q=BLACK
 
 
 

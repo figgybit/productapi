@@ -5,6 +5,7 @@ from django.core.files import File
 
 
 class Products(models.Model):
+    # Products all must have vendor_style_number, vendor_color, and vendor_size
 
     vendor_style_number  = models.CharField(max_length=140)
     vendor_color = models.CharField(max_length=140)
@@ -34,7 +35,7 @@ class Products(models.Model):
             entity.save()
             return entity
         return None
- 
+
     @classmethod
     def validate_request(cls, request, pk=None):
         vendor_style_number = request.REQUEST.get('vendor_style_number', None)
@@ -48,7 +49,7 @@ class Products(models.Model):
             return True, attrs
         else:
             return False, None
- 
+
 
 class Attributes(models.Model):
     product = models.ForeignKey(Products)

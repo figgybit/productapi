@@ -1,8 +1,7 @@
 from piston.emitters import Emitter
 from piston.handler import BaseHandler, AnonymousBaseHandler
-from piston.emitters import JSONEmitter, reverser, Emitter
+from piston.emitters import JSONEmitter
 from productAPI.product.models import Products, Attributes
-import re
 import operator
 from django.db.models import Q
 
@@ -10,7 +9,7 @@ from django.db.models import Q
 Emitter.register('json', JSONEmitter, 'application/json; charset=utf-8')
 
 class ProductHandler(BaseHandler):
- 
+
     fields = ('id',
               'vendor_style_number',
               'vendor_color',
@@ -23,7 +22,7 @@ class ProductHandler(BaseHandler):
 
     def read(self, request, id=None):
         action = request.REQUEST.get('action', None)
-        
+
         if action == 'create':
             valid, attrs = Products.validate_request(request)
             if valid:
@@ -32,7 +31,7 @@ class ProductHandler(BaseHandler):
                 return {'status':'success','product':p}
             else:
                 return {'status':'error','message':'vendor_style_number, vendor_color, and vendor_size are required fields.'}
-        elif action == 'update': 
+        elif action == 'update':
             if id:
                 valid, attrs = Products.validate_request(request, id)
                 p = Products.update(id, attrs)
@@ -50,7 +49,7 @@ class ProductHandler(BaseHandler):
                 return {'status':'success'}
             else:
                 return {'status':'error','message':'product id must be provided perform a deletion.'}
-        elif action == 'delete_attrs': 
+        elif action == 'delete_attrs':
             if id:
                 valid, attrs = Products.validate_request(request, id)
                 p = Products.objects.get(pk=id)
